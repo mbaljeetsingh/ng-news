@@ -9,6 +9,7 @@ import { HomeComponent } from './home/home.component';
 import { HeadlinesComponent } from './headlines/headlines.component';
 import { SourcesComponent } from './sources/sources.component';
 import { FavoritesComponent } from './favorites/favorites.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -22,9 +23,10 @@ import { FavoritesComponent } from './favorites/favorites.component';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
