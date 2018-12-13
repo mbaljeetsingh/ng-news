@@ -11,6 +11,10 @@ export class HomeComponent implements OnInit, OnDestroy {
   news: any;
   newsSubscription;
 
+  length;
+  pageSize = 8;
+  page = 1;
+
   constructor(
     private newsService: NewsService,
     private snackBar: MatSnackBar
@@ -22,9 +26,26 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   getData() {
     this.newsSubscription = this.newsService
-      .getData('top-headlines?country=us')
+      .getData(
+        `top-headlines?country=us&pageSize=${this.pageSize}&page=${this.page}`
+      )
       .subscribe(data => {
         this.news = data;
+        this.length = data['totalResults'];
+      });
+  }
+
+  onPageChange(event) {
+    console.log(event);
+    this.newsSubscription = this.newsService
+      .getData(
+        `top-headlines?country=us&pageSize=${
+          this.pageSize
+        }&page=${event.pageIndex + 1}`
+      )
+      .subscribe(data => {
+        this.news = data;
+        this.length = data['totalResults'];
       });
   }
 

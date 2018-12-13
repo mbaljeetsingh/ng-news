@@ -24,3 +24,8 @@
     </mat-card>
   </div>
 </div>
+<mat-paginator
+  [length]="length"
+  [pageSize]="pageSize"
+  (page)="onPageChange($event)"
+></mat-paginator>
