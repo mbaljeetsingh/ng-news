@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-favorites',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FavoritesComponent implements OnInit {
   articles;
-  constructor() {}
+  constructor(private snackBar: MatSnackBar) {}
 
   ngOnInit() {
     this.getFavorites();
@@ -25,5 +26,8 @@ export class FavoritesComponent implements OnInit {
     const index = this.articles.indexOf(article);
     this.articles.splice(index, 1);
     localStorage.setItem('items', JSON.stringify(this.articles));
+    this.snackBar.open('Favorite Removed', 'ok', {
+      duration: 3000
+    });
   }
 }

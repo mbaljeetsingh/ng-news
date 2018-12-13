@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NewsService } from '../services/news.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-home',
@@ -10,7 +11,10 @@ export class HomeComponent implements OnInit, OnDestroy {
   news: any;
   newsSubscription;
 
-  constructor(private newsService: NewsService) {}
+  constructor(
+    private newsService: NewsService,
+    private snackBar: MatSnackBar
+  ) {}
 
   ngOnInit() {
     this.getData();
@@ -39,5 +43,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
     items.push(article);
     localStorage.setItem('items', JSON.stringify(items));
+    this.snackBar.open('Favorite Added', 'ok', {
+      duration: 3000
+    });
   }
 }
