@@ -12,10 +12,19 @@ const routes: Routes = [
   },
   {
     path: 'headlines',
-    component: HeadlinesComponent
+    // component: HeadlinesComponent
+    loadChildren: './headlines/headlines.module#HeadlinesModule'
   },
-  { path: 'sources', component: SourcesComponent },
-  { path: 'favorites', component: FavoritesComponent }
+  {
+    path: 'sources',
+    // component: SourcesComponent,
+    loadChildren: './sources/sources.module#SourcesModule'
+  },
+  {
+    path: 'favorites',
+    // component: FavoritesComponent,
+    loadChildren: './favorites/favorites.module#FavoritesModule'
+  }
 ];
 
 @NgModule({
