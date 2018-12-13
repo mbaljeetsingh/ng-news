@@ -27,4 +27,17 @@ export class HomeComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.newsSubscription.unsubscribe();
   }
+
+  onFavorite(article) {
+    console.log(article);
+
+    let items = [];
+    const val = localStorage.getItem('items');
+
+    if (val !== null) {
+      items = JSON.parse(val);
+    }
+    items.push(article);
+    localStorage.setItem('items', JSON.stringify(items));
+  }
 }
